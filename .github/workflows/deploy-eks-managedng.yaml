@@ -1,0 +1,25 @@
+name: "Deploy EKS ManagedNG Layer"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "EKS-Argocd-ManagedNodeRG/Infra/**"
+      - ".github/workflows/deploy-eks-managedng.yaml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "EKS-Argocd-ManagedNodeRG/Infra/**"
+      - ".github/workflows/deploy-eks-managedng.yaml"
+
+jobs:
+  deploy-sbx-cluster:
+    uses: AnoopHegde/platformengine-reusable-workflows/.github/workflows/terraform-aws-deploy.yaml@main
+    with:
+      github-env: npd
+      environment: sbx
+      working-directory: EKS-Argocd-ManagedNodeRG/Infra/terraform
+      runner-label: ${{ inputs.github-runner || 'pe-arc-runner-shared-npd' }}
+    secrets: inherit
