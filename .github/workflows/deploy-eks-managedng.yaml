@@ -28,8 +28,8 @@ on:
         type: choice
         options:
         - 'ubuntu-latest'
-        - 'abc'
-        - 'qwe'    
+        - 'pe-arc-runner-shared-npd'
+   
 
 jobs:
   deploy-sbx-cluster:
