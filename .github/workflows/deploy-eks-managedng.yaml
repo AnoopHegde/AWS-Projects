@@ -13,6 +13,23 @@ on:
     paths:
       - "EKS-Argocd-ManagedNodeRG/Infra/**"
       - ".github/workflows/deploy-eks-managedng.yaml"
+  workflow_dispatch:
+    inputs:
+      env-class:
+        description: 'The environment class to deploy to'
+        default: npd
+        type: choice
+        options:
+        - npd
+        - prd
+      github-runner:
+        description: 'Github runner to use, use ubuntu-latest when creating new environment. Defaults to '
+        default: 'abc'
+        type: choice
+        options:
+        - 'ubuntu-latest'
+        - 'abc'
+        - 'qwe'    
 
 jobs:
   deploy-sbx-cluster:
